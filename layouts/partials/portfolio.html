@@ -1,0 +1,29 @@
+{{ $paginator := .Paginate (where .RegularPages "Type" $.Site.Params.portfolioTypeName) }}
+    <h1 class ="post-title">Portfolio</h1>
+
+    <div class="portfolio-grid">
+         {{ range $paginator.Pages }}
+            <a class="portfolio-link" href="{{.RelPermalink}}">
+              <div class="portfolio-grid-item">
+              {{ if .Params.Cover }}
+                <div>
+                  <img src="{{ .Params.Cover | absURL }}" alt="{{ .Title | plainify | default " " }}" />
+                </div>
+              {{ end }}
+              <div class="portfolio-grid-item-name">
+                {{ .Title | markdownify }}
+              </div>
+              </div>
+            </a>
+        {{ end }}
+    </div>
+
+
+{{ if .Sections }}
+{{ range .Sections}}
+{{.CurrentSection.Title }}
+{{ range $i, $e := .Data.Pages }}
+{{.Title}}
+{{ end }}
+{{end }}
+{{ end }}
