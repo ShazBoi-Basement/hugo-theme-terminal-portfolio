@@ -4,35 +4,25 @@
       {{ . }}
     </div>
   {{ end }}
-  <div class="posts">
-    {{ if eq (.Section) $.Site.Params.portfolioTypeName }}
-      {{ if .Sections }}
-        {{ range sort .Sections ".Weight"}}
-          <h2>{{.CurrentSection.Title}}</h2>
-          <div class="portfolio-grid">
-            {{ range $i, $e := .Data.Pages }}
-              <a class="portfolio-link" href="{{.RelPermalink}}">
-                <div class="portfolio-grid-item">
-                 {{ if .Params.portfolioCover }}
-                    <div>
-                      <img class="portfolio-grid-item-image" src="{{ .Params.portfolioCover | absURL }}" alt="{{ .Title | plainify | default " " }}" /> 
-                    </div>
-                  {{ end }}
-                  <div class="portfolio-grid-item-name">
-                    {{ .Title | markdownify }}
-                    {{ if .Params.portfolioIcons}}
-                      {{ range .Params.portfolioIcons }}
-                        <img class="portfolio-grid-item-icon" height="14" width="14" src={{ . }} />
-                      {{ end }}
-                    {{ end }}
-                  </div>
-                </div>
-              </a>
-            {{ end }}
-          </div>
+  
+  {{ if eq (.Params.isPortfolio) true }}
+    {{ if .Sections }}
+      {{ range sort .Sections ".Weight"}}
+      <h2>{{.CurrentSection.Title}}</h2>
+      <div class="portfolio-grid">
+        {{ range .Data.Pages }}
+          {{ partial "portfolio_item.html" . }}
         {{ end }}
+      </div>
       {{ end }}
     {{ else }}
+      <div class="portfolio-grid">
+      {{ range .Pages }}
+        {{ partial "portfolio_item.html" . }}
+      {{ end }}
+      </div>
+    {{ end }}
+  {{ else }}
     {{ range .Pages }}
       <div class="post on-list">
         <h1 class="post-title">
