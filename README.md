@@ -24,7 +24,7 @@ A portfolio works as any normal section would. Consider the example below, of a 
 In the `\_index.md` file to your section, add the following to the header:
 ``isPortfolio = true`` 
 
-Then, for each portfolio item, add an image to your static files. I recommend them being square as per the examples. Other resolutions might work too. Link the images to your portfolio items by adding the following to their header:
+Then, for each portfolio item, add an image to your static files. I recommend them being square as per the example screenshots, although other resolutions might work too (they might look funky tho 😶). Link the images to your portfolio items by adding the following to their header:
 ``portfolioCover = "path_to_image.png"``
 
 If you want to add icons, add them to the header too:
@@ -51,6 +51,8 @@ You can also organise your portfolio with subsections. Just add them as subfolde
 ----- portfolio_item2.md
 ----- portfolio_item3.md
 ```
+
+**Visit the folder `exampleSite` for examples**
 
 ![Terminal Portfolio with subsections](https://github.com/Louisload/hugo-theme-terminal-portfolio/blob/master/images/portfolio2.png?raw=true)
 
